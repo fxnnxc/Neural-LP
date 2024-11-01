@@ -22,9 +22,9 @@ def list_rules(attn_ops, attn_mems, the):
     """
     
     num_step = len(attn_ops)
-    paths = {t+1: [] for t in xrange(num_step)}
+    paths = {t+1: [] for t in range(num_step)}
     paths[0] = [([], 1.)]
-    for t in xrange(num_step):
+    for t in range(num_step):
         for m, attn_mem in enumerate(attn_mems[t]):
             for p, w in paths[m]:
                 paths[t+1].append((p, w * attn_mem))
@@ -77,7 +77,7 @@ def print_rules(q_id, rules, parser, query_is_language):
                 "%0.3f (%0.3f)\t%s(B, A) <-- equal(B, A)" 
                 % (w, w_normalized, query))
         else:
-            lvars = [chr(i + 65) for i in xrange(1 + len(rule))]
+            lvars = [chr(i + 65) for i in range(1 + len(rule))]
             printed_rule = "%0.3f (%0.3f)\t%s(%c, %c) <-- " \
                             % (w, w_normalized, query, lvars[-1], lvars[0]) 
             for i, literal in enumerate(rule):
